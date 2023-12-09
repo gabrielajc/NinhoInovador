@@ -1,0 +1,296 @@
+<style>
+.custom-model-main {
+  text-align: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; /* z-index: 1050; */
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear, z-index 0.15;
+  -o-transition: opacity 0.15s linear, z-index 0.15;
+  transition: opacity 0.15s linear, z-index 0.15;
+  z-index: -1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.model-open {
+  z-index: 99999;
+  opacity: 1;
+  overflow: hidden;
+}
+.custom-model-inner {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  display: inline-block;
+  vertical-align: middle;
+  width: 600px;
+  margin: 30px auto;
+  max-width: 97%;
+}
+.custom-model-wrap {
+  border-radius: 1.3rem!important;
+  display: block;
+  width: 625px;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+  text-align: left;
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: calc(100vh - 70px);
+	overflow-y: auto;
+}
+.model-open .custom-model-inner {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+  position: relative;
+  z-index: 999;
+}
+.model-open .bg-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+.bg-overlay {
+  background: rgba(0, 0, 0, 0);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-transition: background 0.15s linear;
+  -o-transition: background 0.15s linear;
+  transition: background 0.15s linear;
+}
+.close-btn {
+  /*position: absolute;*/
+  right: 0;
+  margin-right: 15px;
+  top: -30px;
+  cursor: pointer;
+  z-index: 99;
+  font-size: 30px;
+  color: #000;
+}
+.click-here{
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 100px;
+    border: 1px solid #1050E0;
+    /*margin: 0px 50px;*/
+    padding: 7px 5px;
+}
+  .additional_content{
+    display:flex;
+    flex-direction:row;
+  }
+  .desktop-click{
+    margin-left:15px;
+  }
+@media screen and (min-width:800px){
+	.custom-model-main:before {
+	  content: "";
+	  display: inline-block;
+	  height: auto;
+	  vertical-align: middle;
+	  margin-right: -0px;
+	  height: 100%;
+	}
+}
+@media screen and (max-width:799px){
+  .custom-model-inner{margin-top: 45px;}
+  .custom-model-wrap {
+    width:100%;
+  }
+  .additional_content{
+    flex-direction:column;
+    padding-bottom:10px;
+    margin-top: -15px;
+  }
+  .desktop-click{
+    display:none !important;
+  }
+  .mobile-click{
+    display:block !important;
+    margin-left: 28px;    
+  }
+  /*.click-here{
+    padding: 5px;
+    margin: 0px 15px;
+  }*/
+  .icon-box span{
+    padding-bottom: 5px;
+  }
+}
+
+.modal .modal-body {
+    min-height: 90px;
+    overflow-x: hidden;
+}  
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}  
+.modal-body table{
+  width:90% !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+table th, table td{
+  padding:3px !important;
+}
+table th{
+  color:#000 !important;
+  background-color:#fff!important;
+}
+.modal-title{  
+	font-weight: normal !important;
+}
+  
+</style>     
+<div class="custom-model-main">
+    <div class="custom-model-inner">        
+    
+        <div class="custom-model-wrap">
+            <div class="pop-up-content-wrap">
+               <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Parcelamento</h5>     
+                                        <div class="close-btn">×</div>
+                                    </div>
+                 					
+                                    <div class="modal-body">
+                                      {{ product.title }}
+                                        <br/><br/>
+                                        <table class="table">
+                                            <tbody><tr>
+                                                <th><p>Nº parcela</p></th>
+                                                <th>Valor da Parcela</th>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                              
+                                                <td>1x de R$ <span class="valorEm1xCartao">129,90</span> à vista</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>2x de R$ <span class="valorEm2xCartao">64,95</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>3x de R$ <span class="valorEm3xCartao">43,30</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>4x de R$ <span class="valorEm4xCartao">35,15</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>5x de R$ <span class="valorEm5xCartao">28,49</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>6x de R$ <span class="valorEm6xCartao">24,04</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>7x de R$ <span class="valorEm7xCartao">20,83</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td>8x de R$ <span class="valorEm8xCartao">18,49</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>9</td>
+                                                <td>9x de R$ <span class="valorEm9xCartao">16,66</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>10</td>
+                                                <td>10x de R$ <span class="valorEm10xCartao">15,15</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>11</td>
+                                                <td>11x de R$ <span class="valorEm11xCartao">13,96</span> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>12</td>
+                                                <td>12x de R$ <span class="valorEm12xCartao">12,97</span> 
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </div>
+
+                                </div>
+            </div>
+        </div>  
+    </div>  
+    <div class="bg-overlay"></div>
+</div> 
+
+<script>
+  $(function(){
+    $('.click-here').click(function(){
+      $(".custom-model-main").addClass('model-open');
+    });
+    $(".close-btn, .bg-overlay").click(function(){
+      $(".custom-model-main").removeClass('model-open');
+    });
+  });
+    function updateElementsWithClassName(className, value) {
+      var els = document.getElementsByClassName(className);
+      Array.prototype.forEach.call(els, function(el) {
+        el.innerHTML = value;
+      });
+    }
+    function updateParcelamento(quantidade = 1) {
+      const valor_produto = quantidade * Number('{{ product.price |  money_without_currency }}'.replace('.', '').replace(',', '.'));
+      const qtd_sem_juros_parcelamento = Number('3');
+      updateElementsWithClassName("valorEm1xCartao", (valor_produto * Number(1)).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm2xCartao", (valor_produto *  (2 <= qtd_sem_juros_parcelamento ? 1 : Number(1.0676)) / 2  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm3xCartao", (valor_produto *  (3 <= qtd_sem_juros_parcelamento ? 1 : Number(1.0844)) / 3  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm4xCartao", (valor_produto *  (4 <= qtd_sem_juros_parcelamento ? 1 : Number(1.1023)) / 4  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm5xCartao", (valor_produto *  (5 <= qtd_sem_juros_parcelamento ? 1 : Number(1.1193)) / 5  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm6xCartao", (valor_produto *  (6 <= qtd_sem_juros_parcelamento ? 1 : Number(1.1358)) / 6  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm7xCartao", (valor_produto *  (7 <= qtd_sem_juros_parcelamento ? 1 : Number(1.1501)) / 7  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm8xCartao", (valor_produto *  (8 <= qtd_sem_juros_parcelamento ? 1 : Number(1.1690)) / 8  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm9xCartao", (valor_produto *  (9 <= qtd_sem_juros_parcelamento ? 1 : Number(1.1886)) / 9  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm10xCartao", (valor_produto *  (10 <= qtd_sem_juros_parcelamento ? 1 : Number(1.2007)) / 10  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName("valorEm11xCartao", (valor_produto *  (11 <= qtd_sem_juros_parcelamento ? 1 : Number(1.2192)) / 11  ).toFixed(2).replace('.', ','));
+      updateElementsWithClassName('valorEm12xCartao', (valor_produto * (12 <= qtd_sem_juros_parcelamento ? 1 : Number(1.2375)) / 12).toFixed(2).replace('.', ','))
+    }
+    updateParcelamento();
+</script>
